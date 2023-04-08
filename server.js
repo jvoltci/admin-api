@@ -21,7 +21,7 @@ console.log('Database Connected successfully to server')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use((req, res, next) => {
-    const allowedOrigins = ['http://localhost:5173', 'https://gigchain-admin.onrender.com/'];
+    const allowedOrigins = ['http://localhost:5173', 'https://gigchain-admin.onrender.com'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
