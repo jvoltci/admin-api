@@ -7,7 +7,7 @@ const handleGigger = async (req, res, db) => {
                 .updateOne({ id: gigger }, { $set: { status: 'Assigned', gig: gig } })
             if (result) {
                 const count = await db.collection('giggers')
-                    .find({ gig: gig }).toArray()
+                    .find({ gig: gig, status: 'Assigned' }).toArray()
                 await db.collection('gigs').updateOne({ id: gig }, { $set: { giggers: count.length } })
             }
             res.json({
@@ -21,7 +21,7 @@ const handleGigger = async (req, res, db) => {
                 .updateOne({ id: gigger }, { $set: { status: 'Unassigned', gig: '' } })
             if (result) {
                 const count = await db.collection('giggers')
-                    .find({ gig: gig }).toArray()
+                    .find({ gig: gig, status: 'Assigned' }).toArray()
                 await db.collection('gigs').updateOne({ id: gig }, { $set: { giggers: count.length } })
             }
             res.json({

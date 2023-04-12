@@ -8,7 +8,8 @@ const { MongoClient } = require("mongodb")
 const handleGigs = require('./modules/handleGigs')
 const handleGiggersAssigned = require('./modules/handleGiggersAssigned')
 const handleGiggers = require('./modules/handleGiggers')
-const handleGigger = require('./modules/handleGigger')
+const handleGigger = require('./modules/handleGigger');
+const handleAllocate = require('./modules/handleAllocate');
 
 // Database config
 const connectionUrl = process.env.DATABASE
@@ -35,6 +36,7 @@ app.get('/api/v1/gigs/:id', (req, res) => handleGiggersAssigned(req, res, db))
 app.get('/api/v1/giggers', (req, res) => handleGiggers(req, res, db))
 
 app.post('/api/v1/gigger', (req, res) => handleGigger(req, res, db))
+app.post('/api/v1/gigger/allocate', (req, res) => handleAllocate(req, res, db))
 
 
 app.listen(port, () => console.log(`App is listening on port: ${port}`))
